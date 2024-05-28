@@ -1,0 +1,1383 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../anime/MyGO/">
+      
+      
+      
+      <link rel="icon" href="../../log.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+    
+    
+      
+        <title>数据建模与分析 - Zwh的小站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+
+      
+    
+<script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+    };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=LXGW+WenKai+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"LXGW WenKai Screen";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+      <link rel="stylesheet" href="../../css/card.css">
+    
+      <link rel="stylesheet" href="../../css/tasklist.css">
+    
+      <link rel="stylesheet" href="../../css/flink.css">
+    
+      <link rel="stylesheet" href="../../css/more_changelog.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="brown">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Zwh的小站" class="md-header__button md-logo" aria-label="Zwh的小站" data-md-component="logo">
+      
+  <img src="../../log.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Zwh的小站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              数据建模与分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="brown"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../anime/%E7%99%BD%E8%89%B2%E5%B7%A8%E5%A1%94/" class="md-tabs__link">
+          
+  
+    
+  
+  看过的动漫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  学习相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Zwh的小站" class="md-nav__button md-logo" aria-label="Zwh的小站" data-md-component="logo">
+      
+  <img src="../../log.ico" alt="logo">
+
+    </a>
+    Zwh的小站
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    看过的动漫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            看过的动漫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anime/%E7%99%BD%E8%89%B2%E5%B7%A8%E5%A1%94/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    白色巨塔
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anime/%E6%9D%A5%E8%87%AA%E9%A3%8E%E5%B9%B3%E6%B5%AA%E9%9D%99%E7%9A%84%E6%98%8E%E5%A4%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    来自风平浪静的明天
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anime/MyGO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MyGO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    学习相关
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            学习相关
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    数据建模与分析
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    数据建模与分析
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chap1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chap1：研究背景
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chap1：研究背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 问题介绍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 相关工作与概念介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 相关工作与概念介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      分类器校准相关概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      分类器校准策略
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chap2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chap2：主要思路
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chap2：主要思路">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      论文思路梗概
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isotonic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      保序回归（Isotonic regression）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="保序回归（Isotonic regression）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      凸优化问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pool-adjacent-violators-algorithmpav" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pool adjacent violators algorithm(PAV)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      保序回归的校准
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roc-auc" class="md-nav__link">
+    <span class="md-ellipsis">
+      保序回归在ROC-AUC上的保留性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="保序回归在ROC-AUC上的保留性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symmetric-roc-curvesroc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Symmetric ROC curve(SROC)的定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocroc" class="md-nav__link">
+    <span class="md-ellipsis">
+      保序回归ROC曲线是初始分类器ROC曲线的凸包
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-class-ir" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的拓展（MULTI-CLASS IR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="多类分类器的拓展（MULTI-CLASS IR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要思路介绍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roc-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的ROC surface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的次序定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chap3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chap3:结果和拓展
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chap3:结果和拓展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#irroc" class="md-nav__link">
+    <span class="md-ellipsis">
+      IR和ROC凸包算法的关联
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ir" class="md-nav__link">
+    <span class="md-ellipsis">
+      IR的优越性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的拓展的结果
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      未来方向
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chap4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chap4：讨论与总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chap1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chap1：研究背景
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chap1：研究背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 问题介绍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 相关工作与概念介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 相关工作与概念介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      分类器校准相关概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      分类器校准策略
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chap2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chap2：主要思路
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chap2：主要思路">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      论文思路梗概
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isotonic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      保序回归（Isotonic regression）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="保序回归（Isotonic regression）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      凸优化问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pool-adjacent-violators-algorithmpav" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pool adjacent violators algorithm(PAV)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      保序回归的校准
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roc-auc" class="md-nav__link">
+    <span class="md-ellipsis">
+      保序回归在ROC-AUC上的保留性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="保序回归在ROC-AUC上的保留性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symmetric-roc-curvesroc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Symmetric ROC curve(SROC)的定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocroc" class="md-nav__link">
+    <span class="md-ellipsis">
+      保序回归ROC曲线是初始分类器ROC曲线的凸包
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-class-ir" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的拓展（MULTI-CLASS IR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="多类分类器的拓展（MULTI-CLASS IR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要思路介绍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roc-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的ROC surface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的次序定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chap3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chap3:结果和拓展
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chap3:结果和拓展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#irroc" class="md-nav__link">
+    <span class="md-ellipsis">
+      IR和ROC凸包算法的关联
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ir" class="md-nav__link">
+    <span class="md-ellipsis">
+      IR的优越性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      多类分类器的拓展的结果
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      未来方向
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chap4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chap4：讨论与总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">数据建模与分析：论文阅读<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h5 id="_2">阅读论文<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h5>
+<p>2024-03-Classifier Calibration with ROC-Regularized Isotonic Regression</p>
+<h2 id="chap1">Chap1：研究背景<a class="headerlink" href="#chap1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 问题介绍<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>我们在数据建模与分析课程中学习了诸多种类的分类器，包括<strong>决策树</strong>，<strong>支持向量机SVM</strong>，<strong>朴素贝叶斯分类器</strong>，<strong>k最近邻KNN</strong>，<strong>逻辑回归</strong>等等，在学习到一个分类器时我们不得不去思考如何使分类器输出与真实概率对齐，以便观察到的频率匹配。过去的研究显示，即使是在简单数据集上，包括深度神经网络在内的机器学习分类器也表现出较差的校准性。因此引出了本篇论文的主题：关于<strong>提升分类器的校准性能</strong>。强调了使模型可解释和可靠的重要性。考虑到各种校准方法存在的不足，本篇论文提出了保序回归IR来用作校准，并说明了IR的优越性。</p>
+<h3 id="12">1.2 相关工作与概念介绍<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<h4 id="_3">分类器校准相关概念<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>需要理解和评估分类器的校准以及做出提升，我们需要先掌握对分类器校准的定义，同时也要能够评估校准误差以及如何从校准误差引出分类器的性能。</p>
+<h5 id="_4">校准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
+<p>我们通过 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span> 表示特征空间和输出空间，存在一个分类器： <span class="arithmatex">\(f:X-&gt;P\)</span> 做出预测 <span class="arithmatex">\(p=f(x)\)</span>  </p>
+<p>对于二元的分类问题 <span class="arithmatex">\(Y=\{0,1\} \ P=[0,1]\)</span> 我们定义一个二元分类器是calibrated，如果满足 <span class="arithmatex">\(P[Y=1|f(X)]=f(X)\)</span> 或者 <span class="arithmatex">\(E[Y|f(X)]=f(X)\)</span> </p>
+<p>对于这个概念的理解如下：模型对于各个类别的预测概率应该反映了这些类别实际发生的概率。这个概念是评估分类器性能的重要方面，特别是在决策制定中需要预测概率时。校准良好的模型能更可靠地使用其概率输出进行决策</p>
+<h5 id="_5">校准误差<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
+<p>对于一个分类器 <span class="arithmatex">\(f\)</span> ,我们定义校准误差如下： 
+$$
+K(f)=E[|E[Y|f(X)]-f(X)|]
+$$
+该误差通常被称为预期校准误差（ECE）</p>
+<p>对于预测落在离散网格的情况，我们可以通过式子计算经验的期望，对于网格的每个取值<span class="arithmatex">\(\lambda _j\)</span>(<span class="arithmatex">\(S_j={k\in [1,n]|f(x_k)=\lambda _j}\)</span>)</p>
+<p>可以得到经验期望如下：
+$$
+E[y_i|f(x_i)]=\dfrac{1}{#S_j}\sum_{k\in S_j}y_k
+$$</p>
+<h5 id="_6">评分规则<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
+<p>但是经过校准的预测序列仍会存在问题。由于极小极大定理(Hart, 2022)，它导致了用简单的策略来生成一系列预测，这些预测可以针对任何可能的结果序列进行渐近校准。这可以看作是一个积极的结果，但它也有消极的一⾯。例如每隔一天下雨的城市。预测每天降水的概率为 50% 就足以实现校准，即使这个预测相当糟糕。这表明，虽然校准很有用，但应该在预测准确性的整体背景下考虑它。<strong>为此我们引出一个评分规则来规定什么样的校准是更好的</strong>。  </p>
+<p>Brocker证明了评分规则可以通过校准损失和second refinement term得出。我们使用交叉熵损失来评价校准的结果：
+$$
+H(Y,f(X))=E[KL(f(X)||P(Y|f(X))]+E[H(P(Y|f(X)))]
+$$</p>
+<p>我们看到校准误差用 Kullback‑Leibler 散度 (KL) 表示；根据所选的具体适当评分规则，可能会出现其他标准。需要注意的是，即使一个模型具有零校准误差，这并不意味着它能提供高质量的预测。校准误差是指模型预测的概率与实际发生的概率之间的偏差。零校准误差意味着模型的预测概率在统计上匹配了实际出现的频率。 然而，这并不意味着模型的预测就是精确的。预测的准确性还取决于模型是否能够捕捉到数据中的复杂关系以及预测具体事件的能力。换言之，一个模型可能会正确估计出事件发生的总体概率，但它可能在预测哪些特定实例会发生这些事件时表现不佳。尽管校准是评估模型预测质量的重要方面，但评估模型的整体效能时还需要考虑其他指标，如精度、召回率或F分数。这强调了综合评估模型性能的重要性，而不仅仅是依赖于某个单一的度量指标。</p>
+<h4 id="_7">分类器校准策略<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<h5 id="_8">经典策略<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h5>
+<p>通常的校准策略往往采用简单的数据分割启发式方法来进行校准，例如给定n个数据点<span class="arithmatex">\((x_i,y_i)_{1\leq i\leq n}\in (X,Y)\)</span>我们保留部分用于校准，剩余数据用作训练集来训练分类器</p>
+<p><strong>优势：</strong>分割了校准和模型训练拟合的过程，使得该方法有很强的泛用性</p>
+<p><strong>不足：</strong>在数据稀疏的情况下，保留部分数据进行校准可能会出现精确性问题。在在线学习时每次更新模型都需要再次运行校准。校准依赖于数据在校准集和测试集同分布。</p>
+<h5 id="continuous-calibration-error">连续校准误差（Continuous calibration error）<a class="headerlink" href="#continuous-calibration-error" title="Permanent link">&para;</a></h5>
+<p>评估模型f在集合上的预测<span class="arithmatex">\((p_i=f(x_i))\)</span>,这些预测可以取到0到1的任意值，这在计算校准误差时很难处理，因此我们采用常规的分箱方案（regular binning scheme）:
+$$
+(B_j)_{1\leq j\leq m}={[0,\dfrac{1}{m}], \cdots,[\dfrac{m-1}{m}]}
+$$
+主要想法是将<span class="arithmatex">\(p_i\)</span>离散化，将每个分装到一个箱子中，在通过箱子进行离散的预测，可以使得校准误差的估计值计算更为容易。</p>
+<p><strong>优势：</strong>通过离散化预测，计算校准误差的估计值</p>
+<p><strong>不足：</strong>对于高度倾斜的数据分布会使得结果不稳定</p>
+<h5 id="_9">模型校准<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h5>
+<h6 id="nonparametric-model-calibration">非参数模型校准（Nonparametric model calibration）<a class="headerlink" href="#nonparametric-model-calibration" title="Permanent link">&para;</a></h6>
+<p>非参数化模型则不对数据分布进行固定形式的假设。它们通常依赖于数据本身来确定模型的结构，所以不是参数的数量不固定，而是完全取决于数据。非参数化模型的优点是它们对数据分布的假设较少，可以捕获更复杂的模式。但这也意味着通常需要更多的数据来精确地估计模型。一个例子是直方图校准，即使用固定分箱方案来离散化任何概率分类器的输出，用在每个箱内观察到的实际频率来替换模型在每个箱的预测。非参数化校准方法，如等距回归，就是来解决分箱校准可能对模型性能不利的问题。 </p>
+<h6 id="parametric-model-calibration">参数化模型校准（Parametric model calibration）<a class="headerlink" href="#parametric-model-calibration" title="Permanent link">&para;</a></h6>
+<p>参数化模型是指具有固定数目参数的模型。这些模型通常假设数据符合某种特定的分布形式，这种分布可以通过一组固定数量的参数来描述。这些参数通过拟合数据来确定，一旦确定后，模型的形式也就固定下来了。常见的参数化模型包括线性回归、逻辑回归和高斯混合模型等。例如，在 Platt缩放中，用一个Sigmoid函数来校准分类器的预测，通过最小化与校准标签的交叉熵。参数化模型通常易于理解和计算，但它们依赖于对数据分布的假设，如果假设不正确，可能会导致误差。</p>
+<h6 id="_10">两种比较<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h6>
+<p>参数化模型依赖于少量参数而导致了一个简化的模型，有可能因为过于简化而无法捕捉数据中所有的复杂性（欠拟合），而非参数化模型通过避开固定的分布假设，更灵活地尝试捕获数据中的模式，却也可能因此需要更多的数据来避免过拟合。 在校准上的应用中，参数化和非参数化方法之间的选择通常取决于特定问题的性质和可用数据量。参数化方法由于假设了一个特定的函数形式，可能更容易过拟合，但是在数据量有限时通常更有效。非参数化方法在数据充足时可能提供更准确的校准，但需要谨慎地选择分箱策略以防止模型性能下降。</p>
+<h2 id="chap2">Chap2：主要思路<a class="headerlink" href="#chap2" title="Permanent link">&para;</a></h2>
+<p>经过对相关的工作的讨论，部分策略例如分箱策略对于数据的倾斜分布情况适应性很差，参数模型方面虽然有着学习连续校准函数的能力，但是难以保持准确性，只能通过离散化估计校准误差。我们希望一个策略可以在<strong>保持分类器的性能的同时实现校准</strong>。在相关工作中我们知道，将校准误差设置为0可以优化分类器的交叉熵。</p>
+<p>经过论文的工作，可以说明<strong>保序回归（Isotonic regression）可以在二元分类中实现这两个目标</strong>。</p>
+<h3 id="_11">论文思路梗概<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>机器学习中对于数据的统计存在多种类型的分类器，校准对于特定情况下的分类器非常重要，为了评估校准的性能，论文首先介绍了分类器已校准的定义，校准误差，以及校准能力的评分准则。结合相关的工作，非参数化模型校准通过避开固定的分布假设，更灵活地尝试捕获数据中的模式，却也可能因此需要更多的数据来避免过拟合，参数化模型校准依赖于少量参数而导致了一个简化的模型，有可能因为过于简化而无法捕捉数据中所有的复杂性（欠拟合），论文提出了使用IR来进行校准，为了证明IR校准的合理性，需要证明他能在保持分类器的性能的同时实现校准，因此需要证明IR是零校准误差的而且在ROC-AUC上得到保持（性能只增不降）。论文还创新性推广到了多类的分类器，提出了Multi-class的IRP算法。这种方法涉及构建一个多维自适应分桶方案，确保多类校准误差为零。通过引入单调性约束来实现正则化，以保持K-维ROC表面。</p>
+<h3 id="isotonic-regression">保序回归（Isotonic regression）<a class="headerlink" href="#isotonic-regression" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20240518232136959" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240518232136959.png" /></p>
+<p>保序回归（Isotonic Regression）是一种非参数化的技术，它通过创建一个分段常数函数或单调函数来适应给定的数据点，从而改善概率的预测。在做二元校准时，保序回归用于调整分类器的输出概率，使得调整后的概率与真实概率之间的一致性更高。 具体来说，<strong>保序回归将预测的概率值排序，并调整这些概率值，使得它们在整体上保持单调性</strong>，同时尽可能接近原始数据中观察到的频率。通过这样的调整，保序回归可以帮助纠正预测概率的偏差，使模型的预测更加准确。 简而言之，二元校准配合保序回归是一种通过调整分类器输出的概率分布，来使得这些概率更接近实际发生概率的方法。这种技术对于提高模型的可靠性和预测准确性非常有帮助。</p>
+<h4 id="_12">凸优化问题<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p>保序回归的本质也是在做一个凸优化问题：
+$$
+\min_{r\in \R^{n}}\dfrac{1}{n}\sum_{i=1}^{n}w_i(y_i-r_i)^2
+$$
+该问题是一个凸优化问题，这意味着存在一个全局最小值，并且可以使用适合凸问题的高效算法找到这个最小值。根据 Robertson 等人（1988）的工作，等距回归最小化任何 Bregman 损失函数，这包括作为特例的Kullback-Leibler散度。</p>
+<h4 id="pool-adjacent-violators-algorithmpav">Pool adjacent violators algorithm(PAV)<a class="headerlink" href="#pool-adjacent-violators-algorithmpav" title="Permanent link">&para;</a></h4>
+<p>论文中给出了一种求解Isotonic Regression（IR）的方法：PAV，该方法有着<span class="arithmatex">\(O(n)\)</span>的时间复杂度</p>
+<p><img alt="image-20240518232904390" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240518232904390.png" /></p>
+<p>主要的思路就是通过替换值来使得目标<span class="arithmatex">\(r\)</span>的序列达到有序，完成保序的优化目的。</p>
+<h3 id="_13">保序回归的校准<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>我们从上面的算法中可以看到，IR 产生一个分段常数函数。此外，
+在每个常数区域上，函数的值是落入该区域的所有<span class="arithmatex">\(p_i\)</span>的标签<span class="arithmatex">\(y_i\)</span>的平均值。这两个简单的观察表明，IR 产生了一种自适应的分箱方案，其中设置了箱边界，使得结果函数优化。  </p>
+<p>我们可以证明<strong>保序回归(Isotonic regression)在一维输入的情况下对于二元标签问题已经达到了零校准误差</strong>。</p>
+<p>证明如下：</p>
+<p><img alt="image-20240518233740216" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240518233740216.png" /></p>
+<p>主要思路就是对<span class="arithmatex">\((B_j)_{1\leq j\leq m}\)</span>中的各个桶求均值，并通过关系的转化将<span class="arithmatex">\(r(p)\)</span>与<span class="arithmatex">\(E[Y|r(p)=b_j]\)</span>关联起来。</p>
+<h3 id="roc-auc">保序回归在ROC-AUC上的保留性<a class="headerlink" href="#roc-auc" title="Permanent link">&para;</a></h3>
+<p>正如在评估校准误差的背景下所讨论的那样，大分箱方案会对原始函数进行粗略近似，这可能会导致<strong>预测不太准确</strong>。另一方⾯，细分箱方案可以很好地近似初始函数，但它会减少每个分箱中的点数，并且可能导致<strong>校准集过度拟合</strong>。</p>
+<p>在应用等距回归以及配对邻接违反算法（PAV algorithm）时，约束条件 <span class="arithmatex">\(r_i ≤ r_{i+1}\)</span> 而非 <span class="arithmatex">\(r_i &lt; r_{i+1}\)</span>：这意味着，在等距回归中，我们允许连续的预测值 <span class="arithmatex">\(r_i\)</span> 和 <span class="arithmatex">\(r_{i+1}\)</span> 相等。这种做法仅部分保持了原数据中变量 <span class="arithmatex">\(p\)</span> 的顺序，因为对于连续的 <span class="arithmatex">\(p_i\)</span> 和 <span class="arithmatex">\(p_{i+1}\)</span>（即使它们的值不相等），它们对应的预测值 <span class="arithmatex">\(r_i\)</span> 和 <span class="arithmatex">\(r_{i+1}\)</span> 可以相等。 如果在某个点发现 <span class="arithmatex">\(r_{i+1} &lt; r_i\)</span>，通过设置 <span class="arithmatex">\(r_{i+1} = r_i\)</span> 来修正这种递减情况，实际上是在解决原始序列中的排序问题。这种调整可能会改善预测质量。</p>
+<p><strong>直觉上我们认为<span class="arithmatex">\(r_{i+1} = r_i\)</span>可以有更好的预测质量，下面我们来验证这一点。</strong></p>
+<h4 id="symmetric-roc-curvesroc">Symmetric ROC curve(SROC)的定义<a class="headerlink" href="#symmetric-roc-curvesroc" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20240519000438818" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519000438818.png" /></p>
+<p>如果二元分类器输出的是对正样本的一个分类概率值，当取不同阈值时会得到不同的混淆矩阵，对应于ROC曲线上的一个点。那么ROC曲线就反映了FPR与TPR之间权衡的情况，通俗地来说，即在TPR随着FPR递增的情况下，谁增长得更快，快多少的问题。TPR增长得越快，曲线越往上屈，AUC就越大，反映了模型的分类性能就越好。当正负样本不平衡时，这种模型评价方式比起一般的精确度评价方式的好处尤其显著。</p>
+<h4 id="rocroc">保序回归ROC曲线是初始分类器ROC曲线的凸包<a class="headerlink" href="#rocroc" title="Permanent link">&para;</a></h4>
+<p>证明如下：</p>
+<p><img alt="image-20240519000646134" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519000646134.png" /></p>
+<p>主要思路时说明IR是如何通过构造CSD的GCM来确定ROC曲线的。IR通过找到CSD的左导数来实现这一点，这意味着IR找到的CSD的GCM实质上就是原始分类器ROC曲线的凸包。</p>
+<h3 id="multi-class-ir">多类分类器的拓展（MULTI-CLASS IR)<a class="headerlink" href="#multi-class-ir" title="Permanent link">&para;</a></h3>
+<p>在多类别问题中，预测结果需要在每个类别上都进行校准。这意味着模型对于每个类别的预测概率都应该接近真实的概率。</p>
+<p>然而，对于具有大量类别（通常<span class="arithmatex">\(K&gt;5\)</span>）的问题，要求模型在所有类别上都完美校准是过于严格的。在实践中，通常只要求模型在最重要的几个类别（即，概率最高的几个类别）上进行校准。本论文尝试将IR的思路推广到多类分类器上。</p>
+<h4 id="_14">主要思路介绍<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p>在上文介绍的二元分类器的IR方法中，其之所以在校准概率的同时能保证ROC-AUC不减以至于保证初始模型的性能依赖于IR的保序能力，初始值的“大小”次序的保持，维持初始值在依阈值分类过程中的相对位置，维持了TPR、FPR的性质，进而维持了ROC-AUC。</p>
+<p>我们需要把大小次序，分类的阈值这些在二元分类器中并不困难的概念拓展到高维向量，下面主要介绍这些概念时如何拓展的。</p>
+<h4 id="roc-surface">多类分类器的ROC surface<a class="headerlink" href="#roc-surface" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20240519232416205" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519232416205.png" /></p>
+<p>将描述分类器性能指标之一的SROC推广到高维分类器构成ROC surface</p>
+<h4 id="_15">多类分类器的次序定义<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20240519232512599" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519232512599.png" /></p>
+<p>将大小次序与单调性推广到高维分类器，介绍ROC monotony</p>
+<h4 id="_16">多类分类器的算法<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p>在推广完次序与分类阈值后，我们结合这些将算法推广到多类分类器得出下文的multi-class IRP算法。</p>
+<p><img alt="image-20240519004007986" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519004007986.png" /></p>
+<p>算法被分解为两个主要部分：一个是<code>split</code>过程，另一个是算法的主体。 </p>
+<p>算法主要思路如下：</p>
+<p>初始化<code>splitfound</code>为False，表示是否找到合适的分割点。初始化<code>M</code>变量为0用于衡量分割的好坏。通过迭代集合R中的每个元素γ来尝试寻找最佳分割。对于每个y，计算三种不同的分割：<span class="arithmatex">\(R_κ, S_κ\)</span>, 和 <span class="arithmatex">\(T_i\)</span>。如果当前γ对应的某个性能度量<code>r</code>是单调的并且大于<code>M</code>，则更新<code>M</code>。</p>
+<p>在后面的部分，初始化<code>r</code>为<code>y</code> </p>
+<p>初始化<code>regions</code>列表保存着空集合<code>[∆κ]</code>。</p>
+<p>只要<code>regions</code>非空，就循环执行以下步骤：   </p>
+<ul>
+<li>
+<p>选择<code>regions</code>中使<code>M</code>最大化的最佳分割<code>bestsplit</code>。   </p>
+</li>
+<li>
+<p>从<code>regions</code>中移除这个最佳分割。   </p>
+</li>
+<li>
+<p>执行<code>split</code>过程以确认是否需要进一步分割，并相应更新变量。    </p>
+</li>
+<li>
+<p>如果找到合适的分割（<code>splitfound</code>为True），则将新分割的区域添加回<code>regions</code>列表。 </p>
+</li>
+</ul>
+<p>主要就是不断寻找最好的分割，进而提高模型和算法的性能。</p>
+<h2 id="chap3">Chap3:结果和拓展<a class="headerlink" href="#chap3" title="Permanent link">&para;</a></h2>
+<h4 id="irroc">IR和ROC凸包算法的关联<a class="headerlink" href="#irroc" title="Permanent link">&para;</a></h4>
+<p>图像验证：</p>
+<p><img alt="image-20240519000712845" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519000712845.png" /></p>
+<p>上图中左边三图为标准的分类器模型，右侧三个图为Isotonic Regression的结果图，可以观察到IR的结果图中SROC呈现了初始图凸包的结果。证实了保序回归ROC曲线是初始分类器ROC曲线的凸包。</p>
+<blockquote>
+<p>补充：</p>
+<p>"成本敏感度"（Cost Sensitivity Decision）</p>
+<p>成本敏感学习是一种考虑到不同类型错误所带来成本差异的机器学习方法。在标准的分类任务中，所有类型的错误（例如将正类误判为负类，或将负类误判为正类）通常被视为等同的。然而，在现实世界的应用中，不同类型的错误可能带来截然不同的后果和成本。例如，在医疗诊断中，将健康人误诊为患者（假阳性）和将患病的人错过不诊断（假阴性）所带来的成本和影响是完全不同的。</p>
+<p>CSD值可以帮助评估和量化在特定逼近或分类决策过程中，对于不同错误类型所设置的成本权重是否得当，或者说是用来评估给定的分类算法在考虑错误成本时的性能表现。在图表中，不同的CSD值可能对应于在不同的成本敏感程度下，模型性能的变化情况。这种框架允许研究人员和实践者量化和优化他们的模型，以在特定场景下达到最佳的成本效益。</p>
+</blockquote>
+<h4 id="ir">IR的优越性<a class="headerlink" href="#ir" title="Permanent link">&para;</a></h4>
+<p>IR能够最小化校准集上的交叉熵，同时单调性的假设充当了正则化器的作用，阻止了校准函数在凸包之外进一步拓展。</p>
+<p>此正则化保证我们不会损害初始模型的性能（AUC得到改善或保留）并防止校准集过度拟合来实现最佳权衡。</p>
+<p><img alt="image-20240519001607293" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519001607293.png" /></p>
+<p>上图是对Covertype数据集进行逻辑回归，并对比了使用IR和不做单调性假设的递归分箱方案校准后得到的结果。图中我们使用isotonic recursive partitioning（IRP）创建新区域进行递归，并根据创建的箱数在校准集和测试集上绘制交叉熵。</p>
+<p><strong>结果：</strong></p>
+<p>与标准分箱不同，当网格过细时标准分箱程序会过度拟合校准集，而IR的单调正则化可以防止过度拟合，并且当测试集上的交叉熵最小化时停止算法。</p>
+<p>IR还可以设置自适应的分箱边界，提供更高的自由度，可以在分箱较少的情况下降低交叉熵。</p>
+<h4 id="_17">多类分类器的拓展的结果<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20240519230642747" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519230642747.png" /></p>
+<p>上图演示的是K=3时，算法的性能图表，评估了校准性能，交叉熵，VUS，IRP对比非保序的递归分箱的性能。</p>
+<p><img alt="image-20240519230730825" src="C:\Users\Alienware\AppData\Roaming\Typora\typora-user-images\image-20240519230730825.png" /></p>
+<p>上图演示的是K=4时，算法的性能图表，评估了校准性能，交叉熵，VUS，IRP对比非保序的递归分箱的性能。</p>
+<h5 id="_18">结果总结<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h5>
+<p>实验主要测试了VUS和Cross Entropy，其中VUS主要表征准确性，可以评估初始模型的性能保持能力，Cross Entropy评估预测概率分布与实际概率分布的差异，交叉熵越小表明差异越小。</p>
+<p>可以看到，论文方法提出的改良后推广到多类分类器的IRP，对于实验中的K=2，3，4，无论是在Calibration Set还是Test Set，其Cross Entropy比Recursive Binning低，其AUC/VUS比Recursive Binning高，分别说明预测概率分布与实际概率分布差异小、初始模型性能保持的好。</p>
+<h4 id="_19">未来方向<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<p>进一步探索保序回归及其正则化方法背后的理论基础，为算法的改进和优化提供更有力的理论支撑。<strong>进一步拓展高维度多类分类器上校准理论的研究。</strong></p>
+<p>研究更高效的算法实现，降低计算复杂度，提高校准过程的效率。将该方法应用于更多领域的分类问题，验证其在不同数据集和任务上的有效性和鲁棒性。考虑将本文的校准方法与其他先进的机器学习技术（如深度学习）相结合，以提升模型的预测性能和可解释性。</p>
+<h2 id="chap4">Chap4：讨论与总结<a class="headerlink" href="#chap4" title="Permanent link">&para;</a></h2>
+<p>本文提出了基于ROC正则化保序回归（Isotonic Regression, IR）的分类器校准方法，该方法旨在通过单调变换在校准集上最小化交叉熵，以校准二元分类器，并推广到多类分类器。研究首先证明了保序回归的零校准误差，然后说明了等距回归可以保持ROC曲线的凸包，确保了在校准过程中控制对校准集的过拟合，完成两个目标的共同满足。然后本文创造性将等距回归推广到多类分类器，通过在概率单纯形上构建多维自适应分箱方案，实现了多类校准误差为零。此外，通过引入一种保持K维ROC表面的单调性形式，对算法进行了正则化，有效地在减少交叉熵损失和避免校准集过拟合之间取得了平衡。</p>
+<p>在我们的数据建模与分析课程中学习了多种分类器，本篇论文让我们认识到了分类器校准的重要性，通过IR算法完成零校准误差，使得分类器有更加准确的结果输出。</p>
+<p>本文有思想的证明了保序回归对ROC曲线凸包的保持性，保证了在校准过程的性能，<strong>将IR的思想推广到多类分类器</strong>，实现了算法应用范围的拓展，通过<strong>引入保持K维ROC表面的单调性形式的正则化策略</strong>，有效避免了校准集的过拟合问题。虽然保序回归本身有着较好的解释性，但拓展到多类分类器时在解释性上仍有待我们探索的地方，论文也指引我们思考更好的算法优化多维自适应分箱的思想，让我们明白一个优秀的算法需要同时兼顾多个方面，既要对训练数据较好拟合，也要合理正则化来防止过拟合。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/zhaowh1235/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+        <script src="../../js/baidu-tongji.js"></script>
+      
+        <script src="https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+      
+        <script src="../../js/katex.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
